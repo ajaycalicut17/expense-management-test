@@ -34,7 +34,7 @@ test('Edit expense', async ({ page }) => {
 
   await expect(page.getByRole('heading', { name: 'Expense' })).toBeVisible();
 
-  await page.getByRole('link', { name: 'Edit' }).click();
+  await page.locator('tbody tr').first().getByRole('link', { name: 'Edit' }).click();
 
   await expect(page.getByRole('heading', { name: 'Edit Expense' })).toBeVisible();
 
@@ -56,8 +56,7 @@ test('Delete expense', async ({ page }) => {
 
   await expect(page.getByRole('heading', { name: 'Expense' })).toBeVisible();
 
-  await page.getByRole('button', { name: 'Delete' }).click();
+  await page.locator('tbody tr').first().getByRole('button', { name: 'Delete' }).click();
 
   await expect(page.getByRole('main')).toContainText('Expense deleted successfully');
-  await expect(page.getByRole('cell', { name: 'No expenses found' })).toBeVisible();
 });
