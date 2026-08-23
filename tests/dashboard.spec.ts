@@ -44,3 +44,39 @@ test('average daily expenses', async ({ page }) => {
   await expect(page.getByRole('main')).toContainText('$123,456.00 per day');
   await expect(page.locator('#monthLabel')).toContainText('March 2025');
 });
+
+test('total expenses per category', async ({ page }) => {
+  await page.goto('/dashboard');
+
+  await expect(page.getByRole('heading', { name: 'Dashboard' })).toBeVisible();
+  await expect(page.getByRole('main')).toContainText('Total Expenses per Category');
+
+  await page.locator('#categoryMonthSelector').selectOption('3');
+  await page.locator('#categoryYearSelector').selectOption('2024');
+
+  await expect(page.locator('#expenseByCategory')).toHaveScreenshot('start-dashboard-expense-by-category-march-2024.png');
+  await expect(page.getByText('March 2024')).toBeVisible();
+
+  await page.getByRole('link', { name: 'Expense' }).click();
+
+  await expect(page).toHaveURL('/expense');
+
+  await page.getByRole('link', { name: 'Add' }).click();
+  await page.locator('select[name="category_id"]').selectOption({ label: 'Salary' });
+  await page.getByRole('spinbutton', { name: 'Amount (USD)' }).fill('4321');
+  await page.getByRole('textbox', { name: 'Description' }).fill('test');
+  await page.getByRole('textbox', { name: 'Spent At' }).fill('2024-03-23T19:21');
+  await page.getByRole('button', { name: 'Save' }).click();
+
+  await expect(page.getByRole('main')).toContainText('Expense added successfully');
+
+  await page.getByRole('link', { name: 'Dashboard' }).click();
+
+  await expect(page).toHaveURL('/dashboard');
+
+  await page.locator('#categoryMonthSelector').selectOption('3');
+  await page.locator('#categoryYearSelector').selectOption('2024');
+
+  await expect(page.locator('#expenseByCategory')).toHaveScreenshot('end-dashboard-expense-by-category-march-2024.png');
+  await expect(page.getByText('March 2024')).toBeVisible();
+});
