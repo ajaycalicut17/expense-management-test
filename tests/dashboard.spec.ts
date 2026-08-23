@@ -54,7 +54,7 @@ test('total expenses per category', async ({ page }) => {
   await page.locator('#categoryMonthSelector').selectOption('3');
   await page.locator('#categoryYearSelector').selectOption('2024');
 
-  await expect(page.locator('#expenseByCategory')).toHaveScreenshot('start-dashboard-expense-by-category-march-2024.png', { threshold: 1 });
+  await expect(page.locator('#expenseByCategory')).toHaveScreenshot('start-dashboard-expense-by-category-01-march-2024.png', { threshold: 1 });
   await expect(page.getByText('March 2024')).toBeVisible();
 
   await page.getByRole('link', { name: 'Expense' }).click();
@@ -77,6 +77,6 @@ test('total expenses per category', async ({ page }) => {
   await page.locator('#categoryMonthSelector').selectOption('3');
   await page.locator('#categoryYearSelector').selectOption('2024');
 
-  await expect(page.locator('#expenseByCategory')).toHaveScreenshot('end-dashboard-expense-by-category-march-2024.png', { threshold: 1 });
+  await expect(page.locator('#expenseByCategory')).toHaveScreenshot('end-dashboard-expense-by-category-01-march-2024.png', { threshold: 1 });
   await expect(page.getByText('March 2024')).toBeVisible();
 });
