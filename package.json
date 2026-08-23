@@ -16,7 +16,11 @@
   },
   "homepage": "https://github.com/ajaycalicut17/expense-management-test#readme",
   "devDependencies": {
+    "@faker-js/faker": "^10.6.0",
     "@playwright/test": "^1.62.1",
     "@types/node": "^26.2.0"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2"
   }
 }
