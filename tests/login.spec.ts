@@ -1,8 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { faker } from '@faker-js/faker';
 
-test.use({ storageState: { cookies: [], origins: [] } });
-
 test('login with invalid credentials', async ({ page }) => {
   await page.goto('/');
   await page.getByRole('textbox', { name: 'Email' }).fill('invalid@example.com');

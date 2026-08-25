@@ -42,11 +42,27 @@ export default defineConfig({
     },
     {
       name: 'chromium',
+      testIgnore: [
+        '**/health.spec.ts',
+        '**/login.spec.ts',
+        '**/register.spec.ts',
+      ],
       use: {
         ...devices['Desktop Chrome'],
         storageState: '.auth/user.json',
       },
       dependencies: ['setup'],
+    },
+    {
+      name: 'chromium-no-auth',
+      testMatch: [
+        '**/health.spec.ts',
+        '**/login.spec.ts',
+        '**/register.spec.ts',
+      ],
+      use: {
+        ...devices['Desktop Chrome'],
+      },
     },
 
     // {

@@ -1,8 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { faker } from '@faker-js/faker';
 
-test.use({ storageState: { cookies: [], origins: [] } });
-
 test('register', async ({ page }) => {
   const fullName = faker.person.fullName();
   const email = faker.internet.email();
